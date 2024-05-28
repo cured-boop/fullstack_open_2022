@@ -31,7 +31,7 @@ const App = () => {
       setUser(user)
       blogService.setToken(user.token)
     }
-  }, [])
+  }, [refresh])
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -53,6 +53,7 @@ const App = () => {
       setMessageType('error')
       setMessage('wrong username or password')
     } finally {
+      setRefresh(!refresh)
       setTimeout(() => {
         setMessage('')
       }, 5000)
@@ -63,6 +64,7 @@ const App = () => {
     setUser(null)
     setMessageType('success')
     setMessage('logged out')
+    setRefresh(!refresh)
     setTimeout(() => {
       setMessage('')
     }, 5000)
@@ -79,6 +81,7 @@ const App = () => {
       setMessageType('error')
       setMessage('error creating a blog')
     } finally {
+      setRefresh(!refresh)
       setTimeout(() => {
         setMessage('')
       }, 5000)

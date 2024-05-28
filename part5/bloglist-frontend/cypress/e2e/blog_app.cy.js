@@ -78,7 +78,6 @@ describe('Blog app', function() {
         cy.get('#password').type('asdasdasd')
         cy.get('#login-button').click()
         cy.contains('view').click()
-        cy.get('#like-button').click()
         cy.contains("Things I Don't Know as of 2018")
         cy.get('#remove-button').click({ force: true })
         cy.contains('view').should('not.exist')
