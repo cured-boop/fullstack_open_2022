@@ -59,9 +59,8 @@ const App = () => {
     }
   }
   const handleLogout = () => {
-    window.localStorage.removeItem('loggedBlogappUser')
+    window.localStorage.clear()
     setUser(null)
-    blogService.setToken(null)
     setMessageType('success')
     setMessage('logged out')
     setTimeout(() => {
@@ -100,6 +99,7 @@ const App = () => {
       <div>
         username
         <input
+          id='username'
           type="text"
           value={username}
           name="Username"
@@ -109,13 +109,14 @@ const App = () => {
       <div>
         password
         <input
+          id='password'
           type="password"
           value={password}
           name="Password"
           onChange={({ target }) => setPassword(target.value)}
         />
       </div>
-      <button type="submit">login</button>
+      <button id="login-button" type="submit">login</button>
     </form>
   )
 
@@ -133,7 +134,7 @@ const App = () => {
         <Notification message={message} type={messageType}/>
         <p>
           {user.name} logged in
-          <button onClick={handleLogout}>logout</button>
+          <button id="logout-button" onClick={handleLogout}>logout</button>
         </p>
         <Togglable buttonLabel='create new blog' ref={blogFormRef}>
           <BlogForm
